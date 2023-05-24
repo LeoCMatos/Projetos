@@ -9,7 +9,7 @@
     font-weight: normal;
 }
 
-#container{
+div#container{
     display: flex;
     flex-wrap: wrap;
     border: 1px solid lightgray;
@@ -76,11 +76,11 @@ div.numeros{
 }
 
 
-#zero{
+div#zero{
     width: 50%;
     border-radius: 0 0 0 10px;
 }
 
-#resultado{
+div#resultado{
     border-radius: 0 0 10px 0;
 }
