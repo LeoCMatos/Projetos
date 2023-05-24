@@ -1,38 +1,45 @@
-@charset "UTF-8"
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'interphases';
+    src: url('../fontes/TT\ Interphases\ Pro\ Trial\ Bold.ttf');
+}
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
+    font-family: interphases, sans-serif;
     font-size: 1em;
     font-weight: normal;
+
 }
 
 /* Calculadora*/ 
 div#Calculadora{
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid lightgray;
-    border-radius: 10px;
     width: 400px;
     height: 500px;  
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    font-family: 
 }
 
 /* Parte superior ao visor*/
 div#superior{
     border-radius: 10px 10px 0 0;
+
     background-color: #464646;
     width: 100%;
     height: 20px;
-
 }
+
 /* visor */
 div#visor{
     background-color: #464646;
     width: 400px;
     height: 80px;
-
 }
 
 /*  C +/- %*/
@@ -61,7 +68,6 @@ div.operacoes{
     box-shadow: inset 0 0 0 0.5px #464646;
     color: white;
     font-size: 2em;
-    
 }
 
 
