@@ -9,7 +9,8 @@
     font-weight: normal;
 }
 
-div#container{
+/* Calculadora*/ 
+div#Calculadora{
     display: flex;
     flex-wrap: wrap;
     border: 1px solid lightgray;
@@ -18,6 +19,7 @@ div#container{
     height: 500px;  
 }
 
+/* Parte superior ao visor*/
 div#superior{
     border-radius: 10px 10px 0 0;
     background-color: #464646;
@@ -25,7 +27,7 @@ div#superior{
     height: 20px;
 
 }
-
+/* visor */
 div#visor{
     background-color: #464646;
     width: 400px;
@@ -33,6 +35,7 @@ div#visor{
 
 }
 
+/*  C +/- %*/
 div.funcao{
     background-color: #585858;
     width: 25%;
@@ -46,7 +49,7 @@ div.funcao{
     font-size: 2em;
 }
 
-
+/* Botões ÷ x - + = */
 div.operacoes{
     background-color: #F3A33C;
     width: 25%;
@@ -57,11 +60,12 @@ div.operacoes{
     align-items: center;
     box-shadow: inset 0 0 0 0.5px #464646;
     color: white;
+    font-size: 2em;
     
 }
 
 
-
+/* Botões 0 , 1 2 3 4 5 6 7 8 9 */
 div.numeros{
     background-color: #747474;
     width: 25%;
@@ -72,7 +76,7 @@ div.numeros{
     align-items: center;
     box-shadow: inset 0 0 0 0.5px #464646;
     color: white;
-    
+    font-size: 2em;
 }
 
 
