@@ -118,6 +118,11 @@ div#zero{
     border-radius: 0 0 0 10px;
 }
 
+div#virgula{
+    font-size: 2.8em;
+    align-items: start;
+}
+
 div#resultado{
     border-radius: 0 0 10px 0;
 }
