@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'interphases';
-    src: url('../fontes/TT\ Interphases\ Pro\ Trial\ Bold.ttf');
+    src: url('../fontes/TT\ Interphases\ Pro\ Trial\ Variable.ttf');
 }
 
 *{
@@ -23,16 +23,37 @@ div#Calculadora{
     height: 500px;  
     border: 1px solid lightgray;
     border-radius: 10px;
-    font-family: 
 }
 
 /* Parte superior ao visor*/
 div#superior{
     border-radius: 10px 10px 0 0;
-
     background-color: #464646;
     width: 100%;
     height: 20px;
+    display: inline-block;
+}
+
+div.bolas{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+div#bola1{
+    margin: 5px 0 0 10px;
+    background-color: red;
+}
+
+div#bola2{
+    margin: 5px 0 0 10px;
+    background-color: yellow;
+}
+
+div#bola3{
+    margin: 5px 0 0 10px;
+    background-color: green;
 }
 
 /* visor */
@@ -40,6 +61,12 @@ div#visor{
     background-color: #464646;
     width: 400px;
     height: 80px;
+    color: white;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 3em;
+    padding: 10px;
 }
 
 /*  C +/- %*/
