@@ -27,12 +27,13 @@ div#Calculadora{
 
 /* Parte superior ao visor*/
 div#superior{
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 0 0 0;
     background-color: #464646;
-    width: 100%;
+    width: 50%;
     height: 20px;
     display: inline-block;
 }
+
 
 div.bolas{
     width: 15px;
@@ -55,6 +56,17 @@ div#bola3{
     margin: 5px 0 0 10px;
     background-color: green;
 }
+
+div#contaAnterior{
+    border-radius: 0 10px 0 0;
+    background-color: #464646;
+    width: 50%;
+    height: 20px;
+    text-align: end;
+    padding: 4px 20px 0 0;
+    color: white;
+}
+
 
 /* visor */
 div#visor{

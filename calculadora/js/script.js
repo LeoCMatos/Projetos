@@ -1,11 +1,13 @@
 var calc1 = 0
+
 var calc2 = 0
+
 var CaractereVirgula = true
 var QuantidadeNumerosTela = 12
 var FormatandoNumero
 var error = 'Limite de numeros atigindo'
 var MensagemLimiteVisor = 'Visor atingiu a quantidade máxima de números digitados'
-
+var resultado = 0
 numeroVisor = 0
 visor.innerHTML = 0
 //limpar visor
@@ -16,6 +18,8 @@ function AC(){
     calc1 = 0
     calc2 = 0
     CaractereVirgula = true
+    contaAnterior.innerHTML = ''
+    result = true
 }
 
 
@@ -39,8 +43,11 @@ function numero0ouUndefined(){
 }
 
 function LimiteDeNumerosVisor(){
-    visor.style.fontSize = '1em'
-    visor.innerHTML = error
+    visor.style.fontSize = '1'
+    visor.innerHTML = 'error'
+    resultado = 0
+    calc1 = 0
+    calc2 = 2
 }
 
 //adicionar número 9
@@ -194,7 +201,6 @@ function numero2(){
 //número 1
 
 function numero1(){
-
     numero0ouUndefined()
     //aqui adiciona no visor o número e verifica a quantidade numeros digitados
     if(numeroVisor.length >= QuantidadeNumerosTela){
@@ -211,6 +217,7 @@ function numero1(){
 }
 
 //número 0
+
 
 function numero0(){
 
@@ -247,6 +254,7 @@ function virgula(){
 //Adição soma dos números
 function adicao(){
     //aqui verifica se as variaveis estao zeradas ou não
+
     if(calc1 === 0){
         calc1 = parseFloat(numeroVisor)
         numeroVisor = 0
@@ -256,44 +264,90 @@ function adicao(){
         numeroVisor = 0
         CaractereVirgula = true
     } 
+
+    if(calc2 !== 0 ){
+        console.log(calc2)
+        contaAnterior.innerHTML = calc2 + ' +'
+        
+    } else{
+        console.log(calc1)
+        contaAnterior.innerHTML = calc1  + ' +'
+    }
+
+    
+
     //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
-    if (calc1 !== '0' && calc2 !== '0'){
-        var resultado = calc1 + calc2
+    if (calc1 !== 0 && calc2 !== 0){
+        resultado = calc1 + calc2
+        
         var numeroMaximo = QuantidadeNumerosTela + 1
         if(resultado.toString().length > numeroMaximo){
             LimiteDeNumerosVisor()
         } else{
-            visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+            
+            visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 }) 
+           
         }
         calc1 = 0
         calc2 = resultado
     }
 }
+var result = true
 
 function subtracao(){
-    if(calc1 === 0){
-        calc1 = parseFloat(numeroVisor)
-        numeroVisor = 0
-        CaractereVirgula = true
-    } else if(calc2 === 0) {
-        calc2 = parseFloat(numeroVisor)
-        numeroVisor = 0
-        CaractereVirgula = true
-    } 
-
-    if(calc1 !== '0' && calc1 !== '0'){
-        resultado = calc1 - calc2
-        //visor.innerHTML = resultado
-
-        var numeroMaximo = QuantidadeNumerosTela + 1
-        if(resultado.toString().length > numeroMaximo){
-            LimiteDeNumerosVisor()
+        if(calc1 === 0 && result == true){
+            calc1 = parseFloat(numeroVisor)
+            numeroVisor = 0
+            result = false
+            CaractereVirgula = true
+            console.log('valor calc1 ' + calc1 )
+        }else if(calc2 === 0 || result == false) {
+            calc2 = parseFloat(numeroVisor)
+            numeroVisor = 0
+            CaractereVirgula = true
+            console.log('está entrando aqui?')
+            console.log('valor calc2 ' + calc2)
+        } 
+    
+        if(calc2 !== 0 ){
+            console.log(calc2)
+            contaAnterior.innerHTML = calc2 + ' -'
+            
         } else{
-            visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+            console.log(calc1)
+            contaAnterior.innerHTML = calc1  + ' -'
         }
-        calc1 = 0
-        calc2 = resultado
-    }
-    calc1 = 0
-    calc2 = resultado
+    
+        
+    
+        //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
+        if (calc1 !== 0 && calc2 !== 0 && resultado > 0){
+            resultado = calc1 - calc2
+            
+            var numeroMaximo = QuantidadeNumerosTela + 1
+            if(resultado.toString().length > numeroMaximo){
+                LimiteDeNumerosVisor()
+            } else{
+                contaAnterior.innerHTML = calc1  + ' -'
+                visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 }) 
+               
+            }{
+                calc1 = resultado
+                calc2 = 0
+                result = true
+                console.log('2')
+            }
+
+        }else{
+            resultado = calc2 - calc1
+            calc1 = 0
+            calc2 = resultado
+            result = true
+            console.log('1')
+            contaAnterior.innerHTML = calc2 + ' -'
+            console.log('resultado: ' + resultado + ' calc1: ' + calc1 + ' calc2: ' + calc2)
+            visor.innerHTML = resultado
+        }
+
 }
+
