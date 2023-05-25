@@ -1,5 +1,4 @@
 var calc1 = 0
-
 var calc2 = 0
 
 var CaractereVirgula = true
@@ -8,8 +7,10 @@ var FormatandoNumero
 var error = 'Limite de numeros atigindo'
 var MensagemLimiteVisor = 'Visor atingiu a quantidade máxima de números digitados'
 var resultado = 0
+
 numeroVisor = 0
 visor.innerHTML = 0
+
 //limpar visor
 function AC(){
     numeroVisor = 0
@@ -24,7 +25,6 @@ function AC(){
 
 
 //faz com que o numero seja formatado no visor da calculadora
-
 function formatarNumero(numero) {
     if (numero > 1000) {
       return numero.toLocaleString('pt-BR');
@@ -33,8 +33,7 @@ function formatarNumero(numero) {
     }
   }
 
-//verifica se o número do visor foi definido ou se está o valor está zerado
-    
+//verifica se o número do visor foi definido ou se está o valor está zerado   
 function numero0ouUndefined(){
     if(CaractereVirgula == true &&(numeroVisor.length == undefined || numeroVisor == 0)){
         visor.innerHTML = ''
@@ -71,7 +70,6 @@ function numero9(){
 
 //número 8
 function numero8(){
-
     numero0ouUndefined()
     //aqui adiciona no visor o número e verifica a quantidade numeros digitados
     if(numeroVisor.length >= QuantidadeNumerosTela){
@@ -86,9 +84,9 @@ function numero8(){
         }  
     }
 }
+
 //número 7
 function numero7(){
-
     numero0ouUndefined()
     //aqui adiciona no visor o número e verifica a quantidade numeros digitados
     if(numeroVisor.length >= QuantidadeNumerosTela){
@@ -121,8 +119,8 @@ function numero6(){
         }
     }
 }
-//número 5
 
+//número 5
 function numero5(){
 
     numero0ouUndefined()
@@ -218,7 +216,6 @@ function numero1(){
 
 //número 0
 
-
 function numero0(){
 
     numero0ouUndefined()
@@ -274,8 +271,6 @@ function adicao(){
         contaAnterior.innerHTML = calc1  + ' +'
     }
 
-    
-
     //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
     if (calc1 !== 0 && calc2 !== 0){
         resultado = calc1 + calc2
@@ -318,8 +313,6 @@ function subtracao(){
             contaAnterior.innerHTML = calc1  + ' -'
         }
     
-        
-    
         //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
         if (calc1 !== 0 && calc2 !== 0 && resultado > 0){
             resultado = calc1 - calc2
@@ -348,6 +341,5 @@ function subtracao(){
             console.log('resultado: ' + resultado + ' calc1: ' + calc1 + ' calc2: ' + calc2)
             visor.innerHTML = resultado
         }
-
 }
 
