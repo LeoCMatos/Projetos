@@ -1,345 +1,249 @@
-var calc1 = 0
-var calc2 = 0
+//pega a div calculadora
+var div = document.getElementsByTagName('div')
 
-var CaractereVirgula = true
-var QuantidadeNumerosTela = 12
-var FormatandoNumero
-var error = 'Limite de numeros atigindo'
-var MensagemLimiteVisor = 'Visor atingiu a quantidade máxima de números digitados'
+//defini o número de botoes que vai ter na calculadora
+var numeroBotoes = 22
+var botoes = []
+
+var verificaIgual = true
+// aqui está pegando a classe calc que foi criada para dar forma as divisorias
+var forma = document.getElementsByClassName('calc')
+
+//aqui pega os valores das operações
+var operacao = 0
+
+//aqui verifica se o visor está vazio ou nao
+var visorVazio = true
+
+// manda o valor para o visor de cima
+var visorSuperior = ''
+
+// calculos
+calc1 = '0'
+calc2 = '0'
+
+
+
+//resultado
 var resultado = 0
-
-numeroVisor = 0
-visor.innerHTML = 0
-
-//limpar visor
-function AC(){
-    numeroVisor = 0
-    visor.innerHTML = 0
-    resultado = ''
-    calc1 = 0
-    calc2 = 0
-    CaractereVirgula = true
-    contaAnterior.innerHTML = ''
-    result = true
+//cria os botoes
+for(let x = 1; x <= numeroBotoes; x++){
+    botoes.push(x)
 }
 
 
-//faz com que o numero seja formatado no visor da calculadora
-function formatarNumero(numero) {
-    if (numero > 1000) {
-      return numero.toLocaleString('pt-BR');
-    } else {
-      return numero.toString();
-    }
-  }
-
-//verifica se o número do visor foi definido ou se está o valor está zerado   
-function numero0ouUndefined(){
-    if(CaractereVirgula == true &&(numeroVisor.length == undefined || numeroVisor == 0)){
-        visor.innerHTML = ''
-        numeroVisor = ''
-    }
-}
-
-function LimiteDeNumerosVisor(){
-    visor.style.fontSize = '1'
-    visor.innerHTML = 'error'
-    resultado = 0
-    calc1 = 0
-    calc2 = 2
-}
-
-//adicionar número 9
-function numero9(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '9'
-        //verifica se a virgula nao foi utilizada, se foi utilizada ela vai pro else
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '9'
+//criar a divisorias onde vai teclas
+for(let x = 0; x < numeroBotoes; x++){
+    // cria a divisoria
+    var divisoria = document.createElement('div')
+    // cria os textos
+    var text = document.createTextNode(botoes[x])
+    //aqui pega os textos e coloca dentro da div
+    divisoria.appendChild(text)
+    // pega as divisorias que vao ser criado no for e coloca dentro da div calculadora
+    div[0].appendChild(divisoria)
+    //aqui coloca uma classe nas divisorias criadas
+    divisoria.classList.add('calc')
+    divisoria.onclick = function (){
+    //verifica se o visor está zerado ao clicar se estiver ele zera e não deixa o looping mais entrar
+        if(visorVazio){
+            visor.innerHTML = ''
+            visorVazio = false
         }
-    }
-}
-
-//número 8
-function numero8(){
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '8'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '8'
-        }  
-    }
-}
-
-//número 7
-function numero7(){
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '7'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '7'
+        if(verificaIgual){
+            visor.innerHTML = ''
+            verificaIgual = false
         }
+        visor.innerHTML += this.textContent
     }
 }
 
-//número 6
-function numero6(){
+var ultimaOperacao = 'nenhuma'
 
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '6'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '6'
-        }
+//aqui eu pego a divisoria especifica e coloco o que eu quiser dentro dela
+for(let x = 0; x < forma.length; x++){
+    forma[0].id = 'superiorEsquerdo'
+    forma[1].id = 'superiorDireito'
+    forma[2].id = 'visor'
+    if(x === 3 || x === 4 || x === 5){
+        forma[x].id = 'operacoes'
     }
-}
-
-//número 5
-function numero5(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '5'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '5'
-        }
+    if(x === 6 || x === 10 || x === 14 || x === 18){
+        forma[x].id = 'operacoes2'
     }
-}
+    forma[19].id = 'zero'
+    forma[21].id = 'resultado'
 
-//número 4
+    // aqui pega as div sem id e coloca id numeros nelas
+    if (!forma[x].id) {
+        forma[x].id = 'numeros'
 
-function numero4(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '4'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '4'
-        }
-    }
-}
-
-
-//número 3
-
-function numero3(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '3'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '3'
-        }
-    }
-}
-
-//número 2
-
-function numero2(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '2'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '2'
-        }
-    }
-}
-
-//número 1
-
-function numero1(){
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '1'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '1'
-        }
-    }
-}
-
-//número 0
-
-function numero0(){
-
-    numero0ouUndefined()
-    //aqui adiciona no visor o número e verifica a quantidade numeros digitados
-    if(numeroVisor.length >= QuantidadeNumerosTela){
-        window.alert(MensagemLimiteVisor)
-    } else {
-        numeroVisor += '0'
-        if(CaractereVirgula == true){
-        var numeroFormatado = formatarNumero(Number(numeroVisor));
-        visor.innerHTML = numeroFormatado;
-        } else if (CaractereVirgula == false){
-            visor.innerHTML += '0'
-        }
-    }
-}
-
-//virgula
-function virgula(){
-    if(numeroVisor.length == undefined || numeroVisor == 0){
-        visor.innerHTML = '0'
-        numeroVisor = '0'
-    }
-    if(numeroVisor.length >= QuantidadeNumerosTela && CaractereVirgula == true){
-        window.alert(MensagemLimiteVisor)
-    } else if (CaractereVirgula == true){
-        visor.innerHTML += ','       
-        numeroVisor += '.'
-        CaractereVirgula = false
-    }
-}
-
-//Adição soma dos números
-function adicao(){
-    //aqui verifica se as variaveis estao zeradas ou não
-
-    if(calc1 === 0){
-        calc1 = parseFloat(numeroVisor)
-        numeroVisor = 0
-        CaractereVirgula = true
-    } else if(calc2 === 0) {
-        calc2 = parseFloat(numeroVisor)
-        numeroVisor = 0
-        CaractereVirgula = true
-    } 
-
-    if(calc2 !== 0 ){
-        console.log(calc2)
-        contaAnterior.innerHTML = calc2 + ' +'
-        
-    } else{
-        console.log(calc1)
-        contaAnterior.innerHTML = calc1  + ' +'
     }
 
-    //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
-    if (calc1 !== 0 && calc2 !== 0){
-        resultado = calc1 + calc2
-        
-        var numeroMaximo = QuantidadeNumerosTela + 1
-        if(resultado.toString().length > numeroMaximo){
-            LimiteDeNumerosVisor()
-        } else{
-            
-            visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 }) 
-           
-        }
-        calc1 = 0
-        calc2 = resultado
-    }
-}
-var result = true
+    //aqui coloca o valor na div e na operação
+    forma[1].innerHTML = ''
+    forma[2].innerHTML = '0'
+    forma[3].innerHTML = 'AC'
+    forma[4].innerHTML = '+/-'
+    forma[5].innerHTML = '%'
+    forma[6].innerHTML = '÷'
+    forma[7].innerHTML = '7'
+    forma[8].innerHTML = '8'
+    forma[9].innerHTML = '9'
+    forma[10].innerHTML = 'x'
+    forma[11].innerHTML = '4'
+    forma[12].innerHTML = '5'
+    forma[13].innerHTML = '6'
+    forma[14].innerHTML = '-'
+    forma[15].innerHTML = '1'
+    forma[16].innerHTML = '2'
+    forma[17].innerHTML = '3'
+    forma[18].innerHTML = '+'
+    forma[19].innerHTML = '0'
+    forma[20].innerHTML = ','
+    forma[21].innerHTML = '='
 
-function subtracao(){
-        if(calc1 === 0 && result == true){
-            calc1 = parseFloat(numeroVisor)
-            numeroVisor = 0
-            result = false
-            CaractereVirgula = true
-            console.log('valor calc1 ' + calc1 )
-        }else if(calc2 === 0 || result == false) {
-            calc2 = parseFloat(numeroVisor)
-            numeroVisor = 0
-            CaractereVirgula = true
-            console.log('está entrando aqui?')
-            console.log('valor calc2 ' + calc2)
-        } 
+    //aqui define a função de cada botão
+    forma[0].onclick = function(){}
+    forma[1].onclick = function(){}
+    forma[2].onclick = function(){}
+    forma[3].onclick = function(){
+        forma[1].innerHTML = ''
+        forma[2].innerHTML = '0'
+        visorVazio = true
+        resultado = 0
+        calc1 = '0'
+        calc2 = '0'
+    }
+    //adicao
     
-        if(calc2 !== 0 ){
-            console.log(calc2)
-            contaAnterior.innerHTML = calc2 + ' -'
-            
-        } else{
-            console.log(calc1)
-            contaAnterior.innerHTML = calc1  + ' -'
-        }
-    
-        //aqui se calc1 e calc2 tiverem valor diferente de '0' vai somar e dar o resultado
-        if (calc1 !== 0 && calc2 !== 0 && resultado > 0){
-            resultado = calc1 - calc2
-            
-            var numeroMaximo = QuantidadeNumerosTela + 1
-            if(resultado.toString().length > numeroMaximo){
-                LimiteDeNumerosVisor()
-            } else{
-                contaAnterior.innerHTML = calc1  + ' -'
-                visor.innerHTML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 0 }) 
-               
-            }{
-                calc1 = resultado
-                calc2 = 0
-                result = true
-                console.log('2')
+
+
+    forma[18].onclick = function(){
+            if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+                calc1 = parseFloat(forma[2].innerHTML)
+                verificaIgual = true
+                forma[1].innerHTML = calc1 + ' +'
+                forma[2].innerHTML = calc1
+            } else if(calc1 != undefined){
+                calc1 = parseFloat(forma[1].innerHTML)
+                calc2 = parseFloat(forma[2].innerHTML)
+                resultado = calc1 + calc2
+
+                forma[1].innerHTML = resultado + ' +'
+                fimOperacao()
             }
+            ultimaOperacao = 'adicao'
+    }
+    // subtracao
+    forma[14].onclick = function(){
 
-        }else{
-            resultado = calc2 - calc1
-            calc1 = 0
-            calc2 = resultado
-            result = true
-            console.log('1')
-            contaAnterior.innerHTML = calc2 + ' -'
-            console.log('resultado: ' + resultado + ' calc1: ' + calc1 + ' calc2: ' + calc2)
-            visor.innerHTML = resultado
+        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+            calc1 = parseFloat(forma[2].innerHTML)
+            verificaIgual = true
+            forma[1].innerHTML = calc1 + ' -'
+            forma[2].innerHTML = calc1
+        } else if(calc1 != undefined){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 - calc2
+            forma[1].innerHTML = resultado + ' -'
+            fimOperacao()
         }
+        ultimaOperacao = 'subtracao'
+    }
+    
+
+    //multiplicação
+    operacao = forma[2].innerHTML
+
+    forma[10].onclick = function(){
+        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+            
+            calc1 = parseFloat(forma[2].innerHTML)
+            verificaIgual = true
+            forma[1].innerHTML = calc1 + ' x'
+            forma[2].innerHTML = calc1
+
+        } else if(calc1 != undefined){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 * calc2
+            forma[1].innerHTML = resultado + ' x'
+            fimOperacao()
+        }
+        ultimaOperacao = 'multiplicacao'
+    }
+
+    //divisão
+
+    forma[6].onclick = function(){
+
+        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+            calc1 = parseFloat(forma[2].innerHTML)
+            verificaIgual = true
+            forma[1].innerHTML = calc1 + ' ÷'
+            forma[2].innerHTML = calc1
+        } else if(calc1 != undefined){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 / calc2
+            forma[1].innerHTML = resultado + ' ÷'
+            fimOperacao()
+        }
+        ultimaOperacao = 'divisao'
+    }
+
+    //inverte o sinal
+    forma[4].onclick = function(){
+        calc1 = forma[2].innerHTML
+        calc2 = -1
+        resultado = calc1 * calc2
+        forma[2].innerHTML = resultado
+        resultado = 0
+        calc1 = '0'
+        calc2 = '0'
+    }
+     
+    //resultado
+
+    forma[21].onclick = function(){
+        
+        if(ultimaOperacao == 'adicao'){
+            
+            calc1 = parseFloat(forma[2].innerHTML)
+            calc2 = parseFloat(forma[1].innerHTML)
+            resultado = calc1 + calc2
+
+        } else if(ultimaOperacao == 'subtracao'){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 - calc2
+
+
+        } else if(ultimaOperacao == 'multiplicacao'){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 * calc2
+     
+
+        } else if(ultimaOperacao == 'divisao'){
+            calc1 = parseFloat(forma[1].innerHTML)
+            calc2 = parseFloat(forma[2].innerHTML)
+            resultado = calc1 / calc2
+
+        }
+        fimOperacao()
+    }
+
 }
+
+function fimOperacao(){
+    forma[2].innerHTML = resultado    
+    resultado = 0
+    calc1 = '0'
+    calc2 = '0'
+    verificaIgual = true
+}
+
 

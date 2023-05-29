@@ -12,129 +12,83 @@
     font-family: interphases, sans-serif;
     font-size: 1em;
     font-weight: normal;
+}
+body{
+    background-color: lightcyan;
+}
 
+header{
+    text-align: center;
+    height: 200px;
+    padding-top: 50px;
+    font-size: 5em;
 }
 
 /* Calculadora*/ 
-div#Calculadora{
+div#calculadora{
     display: flex;
-    flex-wrap: wrap;
-    width: 400px;
-    height: 500px;  
-    border: 1px solid lightgray;
+    flex-wrap: wrap;  
+    width: 300px;
+    height: 400px;  
     border-radius: 10px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
 }
 
-/* Parte superior ao visor*/
-div#superior{
-    border-radius: 10px 0 0 0;
-    background-color: #464646;
-    width: 50%;
-    height: 20px;
-    display: inline-block;
-}
-
-
-div.bolas{
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-div#bola1{
-    margin: 5px 0 0 10px;
-    background-color: red;
-}
-
-div#bola2{
-    margin: 5px 0 0 10px;
-    background-color: yellow;
-}
-
-div#bola3{
-    margin: 5px 0 0 10px;
-    background-color: green;
-}
-
-div#contaAnterior{
-    border-radius: 0 10px 0 0;
-    background-color: #464646;
-    width: 50%;
-    height: 20px;
-    text-align: end;
-    padding: 4px 20px 0 0;
-    color: white;
-}
-
-
-/* visor */
-div#visor{
-    background-color: #464646;
-    width: 400px;
-    height: 80px;
-    color: white;
+div.calc{
     display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center; 
+}
+
+#superiorEsquerdo, #superiorDireito {
+    width: 50%;
+    height: 20px;
+    background-color: #464646;
+}
+
+#superiorEsquerdo{border-top-left-radius: 10px;}
+#superiorDireito{
+    border-top-right-radius: 10px;
     justify-content: end;
-    align-items: center;
-    font-size: 3em;
-    padding: 10px;
+    padding-right: 10px;
 }
 
-/*  C +/- %*/
-div.funcao{
-    background-color: #585858;
-    width: 25%;
-    height: 80px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#visor{
+    width: 100%;
+    height: 60px;
+    background-color: #464646;
+    justify-content: end;
+    padding-right: 10px;
     box-shadow: inset 0 0 0 0.5px #464646;
-    color: white;
-    font-size: 2em;
 }
 
-/* Botões ÷ x - + = */
-div.operacoes{
-    background-color: #F3A33C;
+
+#operacoes, #operacoes2, #numeros, #resultado {
     width: 25%;
-    height: 80px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 64px;
+    background-color: lightcyan;
+    font-size: 1.5em;
     box-shadow: inset 0 0 0 0.5px #464646;
-    color: white;
-    font-size: 2em;
 }
 
+#operacoes{background-color: #585858;}
+#operacoes2, #resultado{background-color:#F3A33C;}
+#numeros{background-color: #747474;}
 
-/* Botões 0 , 1 2 3 4 5 6 7 8 9 */
-div.numeros{
-    background-color: #747474;
-    width: 25%;
-    height: 80px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 0.5px #464646;
-    color: white;
-    font-size: 2em;
-}
-
-
-div#zero{
+#zero{
     width: 50%;
-    border-radius: 0 0 0 10px;
+    height: 64px;
+    background-color: #747474;
+    border-bottom-left-radius: 10px;
+    box-shadow: inset 0 0 0 0.5px #464646;
 }
 
-div#virgula{
-    font-size: 2.8em;
-    align-items: start;
-}
-
-div#resultado{
-    border-radius: 0 0 10px 0;
+#resultado{
+    border-bottom-right-radius: 10px;
 }
