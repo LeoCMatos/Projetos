@@ -77,165 +77,163 @@ for(let x = 0; x < forma.length; x++){
     // aqui pega as div sem id e coloca id numeros nelas
     if (!forma[x].id) {
         forma[x].id = 'numeros'
-
     }
+}
 
-    //aqui coloca o valor na div e na operação
+
+forma[1].innerHTML = ''
+forma[2].innerHTML = '0'
+forma[3].innerHTML = 'AC'
+forma[4].innerHTML = '+/-'
+forma[5].innerHTML = '%'
+forma[6].innerHTML = '÷'
+forma[7].innerHTML = '7'
+forma[8].innerHTML = '8'
+forma[9].innerHTML = '9'
+forma[10].innerHTML = 'x'
+forma[11].innerHTML = '4'
+forma[12].innerHTML = '5'
+forma[13].innerHTML = '6'
+forma[14].innerHTML = '-'
+forma[15].innerHTML = '1'
+forma[16].innerHTML = '2'
+forma[17].innerHTML = '3'
+forma[18].innerHTML = '+'
+forma[19].innerHTML = '0'
+forma[20].innerHTML = ','
+forma[21].innerHTML = '='
+
+forma[0].onclick = function(){}
+forma[1].onclick = function(){}
+forma[2].onclick = function(){}
+forma[3].onclick = function(){
     forma[1].innerHTML = ''
     forma[2].innerHTML = '0'
-    forma[3].innerHTML = 'AC'
-    forma[4].innerHTML = '+/-'
-    forma[5].innerHTML = '%'
-    forma[6].innerHTML = '÷'
-    forma[7].innerHTML = '7'
-    forma[8].innerHTML = '8'
-    forma[9].innerHTML = '9'
-    forma[10].innerHTML = 'x'
-    forma[11].innerHTML = '4'
-    forma[12].innerHTML = '5'
-    forma[13].innerHTML = '6'
-    forma[14].innerHTML = '-'
-    forma[15].innerHTML = '1'
-    forma[16].innerHTML = '2'
-    forma[17].innerHTML = '3'
-    forma[18].innerHTML = '+'
-    forma[19].innerHTML = '0'
-    forma[20].innerHTML = ','
-    forma[21].innerHTML = '='
+    visorVazio = true
+    resultado = 0
+    calc1 = '0'
+    calc2 = '0'
+}
 
-    //aqui define a função de cada botão
-    forma[0].onclick = function(){}
-    forma[1].onclick = function(){}
-    forma[2].onclick = function(){}
-    forma[3].onclick = function(){
-        forma[1].innerHTML = ''
-        forma[2].innerHTML = '0'
-        visorVazio = true
-        resultado = 0
-        calc1 = '0'
-        calc2 = '0'
-    }
-    //adicao
-    
+//adicao
 
+forma[18].onclick = function(){
+    if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+        calc1 = parseFloat(forma[2].innerHTML)
+        verificaIgual = true
+        forma[1].innerHTML = calc1 + ' +'
+        forma[2].innerHTML = calc1
+    }else if(calc1 != undefined){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 + calc2
 
-    forma[18].onclick = function(){
-            if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
-                calc1 = parseFloat(forma[2].innerHTML)
-                verificaIgual = true
-                forma[1].innerHTML = calc1 + ' +'
-                forma[2].innerHTML = calc1
-            } else if(calc1 != undefined){
-                calc1 = parseFloat(forma[1].innerHTML)
-                calc2 = parseFloat(forma[2].innerHTML)
-                resultado = calc1 + calc2
-
-                forma[1].innerHTML = resultado + ' +'
-                fimOperacao()
-            }
-            ultimaOperacao = 'adicao'
-    }
-    // subtracao
-    forma[14].onclick = function(){
-
-        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
-            calc1 = parseFloat(forma[2].innerHTML)
-            verificaIgual = true
-            forma[1].innerHTML = calc1 + ' -'
-            forma[2].innerHTML = calc1
-        } else if(calc1 != undefined){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 - calc2
-            forma[1].innerHTML = resultado + ' -'
-            fimOperacao()
-        }
-        ultimaOperacao = 'subtracao'
-    }
-    
-
-    //multiplicação
-    operacao = forma[2].innerHTML
-
-    forma[10].onclick = function(){
-        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
-            
-            calc1 = parseFloat(forma[2].innerHTML)
-            verificaIgual = true
-            forma[1].innerHTML = calc1 + ' x'
-            forma[2].innerHTML = calc1
-
-        } else if(calc1 != undefined){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 * calc2
-            forma[1].innerHTML = resultado + ' x'
-            fimOperacao()
-        }
-        ultimaOperacao = 'multiplicacao'
-    }
-
-    //divisão
-
-    forma[6].onclick = function(){
-
-        if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
-            calc1 = parseFloat(forma[2].innerHTML)
-            verificaIgual = true
-            forma[1].innerHTML = calc1 + ' ÷'
-            forma[2].innerHTML = calc1
-        } else if(calc1 != undefined){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 / calc2
-            forma[1].innerHTML = resultado + ' ÷'
-            fimOperacao()
-        }
-        ultimaOperacao = 'divisao'
-    }
-
-    //inverte o sinal
-    forma[4].onclick = function(){
-        calc1 = forma[2].innerHTML
-        calc2 = -1
-        resultado = calc1 * calc2
-        forma[2].innerHTML = resultado
-        resultado = 0
-        calc1 = '0'
-        calc2 = '0'
-    }
-     
-    //resultado
-
-    forma[21].onclick = function(){
-        
-        if(ultimaOperacao == 'adicao'){
-            
-            calc1 = parseFloat(forma[2].innerHTML)
-            calc2 = parseFloat(forma[1].innerHTML)
-            resultado = calc1 + calc2
-
-        } else if(ultimaOperacao == 'subtracao'){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 - calc2
-
-
-        } else if(ultimaOperacao == 'multiplicacao'){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 * calc2
-     
-
-        } else if(ultimaOperacao == 'divisao'){
-            calc1 = parseFloat(forma[1].innerHTML)
-            calc2 = parseFloat(forma[2].innerHTML)
-            resultado = calc1 / calc2
-
-        }
+        forma[1].innerHTML = resultado + ' +'
         fimOperacao()
     }
+    ultimaOperacao = 'adicao'
+    console.log(forma[1].innerHTML)
+}
 
+// subtracao
+forma[14].onclick = function(){
+
+    if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+        calc1 = parseFloat(forma[2].innerHTML)
+        verificaIgual = true
+        forma[1].innerHTML = calc1 + ' -'
+        forma[2].innerHTML = calc1
+    } else if(calc1 != undefined){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 - calc2
+        forma[1].innerHTML = resultado + ' -'
+        fimOperacao()
+    }
+    ultimaOperacao = 'subtracao'
+}
+
+
+//multiplicação
+operacao = forma[2].innerHTML
+
+forma[10].onclick = function(){
+    if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+        
+        calc1 = parseFloat(forma[2].innerHTML)
+        verificaIgual = true
+        forma[1].innerHTML = calc1 + ' x'
+        forma[2].innerHTML = calc1
+
+    } else if(calc1 != undefined){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 * calc2
+        forma[1].innerHTML = resultado + ' x'
+        fimOperacao()
+    }
+    ultimaOperacao = 'multiplicacao'
+}
+
+//divisão
+
+forma[6].onclick = function(){
+
+    if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+        calc1 = parseFloat(forma[2].innerHTML)
+        verificaIgual = true
+        forma[1].innerHTML = calc1 + ' ÷'
+        forma[2].innerHTML = calc1
+    } else if(calc1 != undefined){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 / calc2
+        forma[1].innerHTML = resultado + ' ÷'
+        fimOperacao()
+    }
+    ultimaOperacao = 'divisao'
+}
+
+//inverte o sinal
+forma[4].onclick = function(){
+    calc1 = forma[2].innerHTML
+    calc2 = -1
+    resultado = calc1 * calc2
+    forma[2].innerHTML = resultado
+    resultado = 0
+    calc1 = '0'
+    calc2 = '0'
+}
+ 
+//resultado
+
+forma[21].onclick = function(){
+    
+    if(ultimaOperacao == 'adicao'){
+        
+        calc1 = parseFloat(forma[2].innerHTML)
+        calc2 = parseFloat(forma[1].innerHTML)
+        resultado = calc1 + calc2
+
+    } else if(ultimaOperacao == 'subtracao'){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 - calc2
+
+
+    } else if(ultimaOperacao == 'multiplicacao'){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 * calc2
+ 
+
+    } else if(ultimaOperacao == 'divisao'){
+        calc1 = parseFloat(forma[1].innerHTML)
+        calc2 = parseFloat(forma[2].innerHTML)
+        resultado = calc1 / calc2
+
+    }
+    fimOperacao()
 }
 
 function fimOperacao(){
@@ -245,5 +243,3 @@ function fimOperacao(){
     calc2 = '0'
     verificaIgual = true
 }
-
-
