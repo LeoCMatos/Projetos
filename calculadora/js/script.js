@@ -58,7 +58,7 @@ for(let x = 0; x < numeroBotoes; x++){
     }
 }
 
-var ultimaOperacao = 'nenhuma'
+
 
 //aqui eu pego a divisoria especifica e coloco o que eu quiser dentro dela
 for(let x = 0; x < forma.length; x++){
@@ -116,48 +116,73 @@ forma[3].onclick = function(){
 }
 
 //adicao
-
+ clickAtivado = false
 forma[18].onclick = function(){
+    if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
+        guardarUltimaOperacao = 'adicao'
+        resultadoOperacao()
+        console.log('1')
+ 
+    } else if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' ){
+        forma[1].innerHTML = forma[2].innerHTML
+        forma[1].innerHTML += ' +'
+        console.log('2')
+    } 
+
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
         forma[1].innerHTML = calc1 + ' +'
         forma[2].innerHTML = calc1
-    }else if(calc1 != undefined){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 + calc2
-
-        forma[1].innerHTML = resultado + ' +'
+        clickAtivado = true
+    }else if(calc1 != undefined && ultimaOperacao == 'adicao'  && verificaIgual == false){
+        guardarUltimaOperacao = 'adicao'
+        resultadoOperacao()
         fimOperacao()
     }
     ultimaOperacao = 'adicao'
-    console.log(forma[1].innerHTML)
 }
+var ultimaOperacao = 'nenhuma'
+var guardarUltimaOperacao = 'nenhuma'
 
 // subtracao
 forma[14].onclick = function(){
+    if(ultimaOperacao != 'subtracao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
+        guardarUltimaOperacao = 'subtracao'
+        resultadoOperacao()
+    } else if(ultimaOperacao != 'subtracao' && ultimaOperacao != 'nenhuma' ){
+        forma[1].innerHTML = forma[2].innerHTML
+        forma[1].innerHTML += ' -'
+    } 
 
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
+        console.log('3')
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
         forma[1].innerHTML = calc1 + ' -'
         forma[2].innerHTML = calc1
-    } else if(calc1 != undefined){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 - calc2
-        forma[1].innerHTML = resultado + ' -'
+    } else if(calc1 != undefined && ultimaOperacao == 'subtracao' && verificaIgual == false){
+        console.log('4')
+        guardarUltimaOperacao = 'subtracao'
+        resultadoOperacao()
         fimOperacao()
     }
     ultimaOperacao = 'subtracao'
 }
 
 
-//multiplicação
-operacao = forma[2].innerHTML
+//multiplicação////////////////////////
 
 forma[10].onclick = function(){
+
+    if(ultimaOperacao != 'multiplicacao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
+        guardarUltimaOperacao = 'multiplicacao'
+        resultadoOperacao()
+    } else if(ultimaOperacao != 'multiplicacao' && ultimaOperacao != 'nenhuma' ){
+        forma[1].innerHTML = forma[2].innerHTML
+        forma[1].innerHTML += ' x'
+    } 
+
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         
         calc1 = parseFloat(forma[2].innerHTML)
@@ -165,11 +190,9 @@ forma[10].onclick = function(){
         forma[1].innerHTML = calc1 + ' x'
         forma[2].innerHTML = calc1
 
-    } else if(calc1 != undefined){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 * calc2
-        forma[1].innerHTML = resultado + ' x'
+    } else if(calc1 != undefined && ultimaOperacao == 'multiplicacao' && verificaIgual == false){
+        guardarUltimaOperacao = 'multiplicacao'
+        resultadoOperacao()
         fimOperacao()
     }
     ultimaOperacao = 'multiplicacao'
@@ -179,12 +202,21 @@ forma[10].onclick = function(){
 
 forma[6].onclick = function(){
 
+    if(ultimaOperacao != 'divisao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
+        guardarUltimaOperacao = 'divisao'
+        resultadoOperacao()
+    } else if(ultimaOperacao != 'divisao' && ultimaOperacao != 'nenhuma' ){
+        forma[1].innerHTML = forma[2].innerHTML
+        forma[1].innerHTML += ' ÷'
+    } 
+
+
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
         forma[1].innerHTML = calc1 + ' ÷'
         forma[2].innerHTML = calc1
-    } else if(calc1 != undefined){
+    } else if(calc1 != undefined && ultimaOperacao == 'divisao' && verificaIgual == false){
         calc1 = parseFloat(forma[1].innerHTML)
         calc2 = parseFloat(forma[2].innerHTML)
         resultado = calc1 / calc2
@@ -242,4 +274,38 @@ function fimOperacao(){
     calc1 = '0'
     calc2 = '0'
     verificaIgual = true
+}
+
+
+function resultadoOperacao(){
+    calc1 = parseFloat(forma[1].innerHTML)
+    calc2 = parseFloat(forma[2].innerHTML)
+    
+    if(ultimaOperacao == 'adicao'){
+        console.log('adicao')
+        resultado = calc1 + calc2
+        operacaoGuardada()
+    } else if(ultimaOperacao == 'subtracao'){
+        console.log('subtraçao')
+        resultado = calc1 - calc2
+        operacaoGuardada()
+    } else if(ultimaOperacao == 'multiplicacao'){
+        console.log('multiplicacao')
+        resultado = calc1 * calc2
+        operacaoGuardada()
+    } else if(ultimaOperacao == 'divisao'){
+        forma[1].innerHTML = resultado + ' ÷'
+    }
+}
+
+function operacaoGuardada(){
+    if(guardarUltimaOperacao == 'adicao'){
+        forma[1].innerHTML = resultado + ' +'
+    } else if(guardarUltimaOperacao == 'subtracao'){
+        forma[1].innerHTML = resultado + ' -'
+    } else if(guardarUltimaOperacao == 'multiplicacao'){
+        forma[1].innerHTML = resultado + ' x'
+    } else if(guardarUltimaOperacao == 'divisao'){
+        forma[1].innerHTML = resultado + ' ÷'
+    }
 }
