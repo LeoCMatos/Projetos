@@ -123,12 +123,10 @@ forma[18].onclick = function(){
     if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
         guardarUltimaOperacao = 'adicao'
         resultadoOperacao()
-        console.log('1')
  
     } else if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' ){
         forma[1].innerHTML = forma[2].innerHTML
         forma[1].innerHTML += ' +'
-        console.log('2')
     } 
 
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
@@ -158,13 +156,11 @@ forma[14].onclick = function(){
     } 
 
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
-        console.log('3')
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
         forma[1].innerHTML = calc1 + ' -'
         forma[2].innerHTML = calc1
     } else if(calc1 != undefined && ultimaOperacao == 'subtracao' && verificaIgual == false){
-        console.log('4')
         guardarUltimaOperacao = 'subtracao'
         resultadoOperacao()
         fimOperacao()
@@ -240,12 +236,12 @@ forma[4].onclick = function(){
 
 forma[21].onclick = function(){
     resultadoOperacao()
+    
     fimOperacao()
 }
 
 function fimOperacao(){
     forma[2].innerHTML = resultado
-    console.log(resultado)
     calc1 = '0'
     calc2 = '0'
     verificaIgual = true
@@ -272,7 +268,7 @@ function resultadoOperacao(){
 
 function operacaoGuardada(){
     if(guardarUltimaOperacao == 'adicao'){
-        forma[1].innerHTML = resultado + ' +'
+       forma[1].innerHTML = resultado + ' +' 
     } else if(guardarUltimaOperacao == 'subtracao'){
         forma[1].innerHTML = resultado + ' -'
 
