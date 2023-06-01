@@ -113,6 +113,8 @@ forma[3].onclick = function(){
     resultado = 0
     calc1 = '0'
     calc2 = '0'
+    ultimaOperacao = 'nenhuma'
+    guardarUltimaOperacao = 'nenhuma'
 }
 
 //adicao
@@ -193,7 +195,7 @@ forma[10].onclick = function(){
     } else if(calc1 != undefined && ultimaOperacao == 'multiplicacao' && verificaIgual == false){
         guardarUltimaOperacao = 'multiplicacao'
         resultadoOperacao()
-        fimOperacao()
+       
     }
     ultimaOperacao = 'multiplicacao'
 }
@@ -217,11 +219,8 @@ forma[6].onclick = function(){
         forma[1].innerHTML = calc1 + ' ÷'
         forma[2].innerHTML = calc1
     } else if(calc1 != undefined && ultimaOperacao == 'divisao' && verificaIgual == false){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 / calc2
-        forma[1].innerHTML = resultado + ' ÷'
-        fimOperacao()
+        guardarUltimaOperacao = 'divisao'
+        resultadoOperacao()
     }
     ultimaOperacao = 'divisao'
 }
@@ -240,37 +239,13 @@ forma[4].onclick = function(){
 //resultado
 
 forma[21].onclick = function(){
-    
-    if(ultimaOperacao == 'adicao'){
-        
-        calc1 = parseFloat(forma[2].innerHTML)
-        calc2 = parseFloat(forma[1].innerHTML)
-        resultado = calc1 + calc2
-
-    } else if(ultimaOperacao == 'subtracao'){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 - calc2
-
-
-    } else if(ultimaOperacao == 'multiplicacao'){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 * calc2
- 
-
-    } else if(ultimaOperacao == 'divisao'){
-        calc1 = parseFloat(forma[1].innerHTML)
-        calc2 = parseFloat(forma[2].innerHTML)
-        resultado = calc1 / calc2
-
-    }
+    resultadoOperacao()
     fimOperacao()
 }
 
 function fimOperacao(){
-    forma[2].innerHTML = resultado    
-    resultado = 0
+    forma[2].innerHTML = resultado
+    console.log(resultado)
     calc1 = '0'
     calc2 = '0'
     verificaIgual = true
@@ -282,20 +257,17 @@ function resultadoOperacao(){
     calc2 = parseFloat(forma[2].innerHTML)
     
     if(ultimaOperacao == 'adicao'){
-        console.log('adicao')
         resultado = calc1 + calc2
-        operacaoGuardada()
     } else if(ultimaOperacao == 'subtracao'){
-        console.log('subtraçao')
-        resultado = calc1 - calc2
-        operacaoGuardada()
+    resultado = calc1 - calc2
     } else if(ultimaOperacao == 'multiplicacao'){
-        console.log('multiplicacao')
         resultado = calc1 * calc2
-        operacaoGuardada()
     } else if(ultimaOperacao == 'divisao'){
-        forma[1].innerHTML = resultado + ' ÷'
+        resultado = calc1 / calc2
     }
+    operacaoGuardada()
+
+    fimOperacao()
 }
 
 function operacaoGuardada(){
@@ -303,9 +275,14 @@ function operacaoGuardada(){
         forma[1].innerHTML = resultado + ' +'
     } else if(guardarUltimaOperacao == 'subtracao'){
         forma[1].innerHTML = resultado + ' -'
+
     } else if(guardarUltimaOperacao == 'multiplicacao'){
         forma[1].innerHTML = resultado + ' x'
+
     } else if(guardarUltimaOperacao == 'divisao'){
         forma[1].innerHTML = resultado + ' ÷'
+
     }
+    
 }
+
