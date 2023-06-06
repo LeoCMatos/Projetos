@@ -80,7 +80,7 @@ for(let x = 0; x < forma.length; x++){
     }
 }
 
-
+forma[0].innerHTML = ''
 forma[1].innerHTML = ''
 forma[2].innerHTML = '0'
 forma[3].innerHTML = 'AC'
@@ -123,12 +123,10 @@ forma[18].onclick = function(){
     if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
         guardarUltimaOperacao = 'adicao'
         resultadoOperacao()
- 
     } else if(ultimaOperacao != 'adicao' && ultimaOperacao != 'nenhuma' ){
         forma[1].innerHTML = forma[2].innerHTML
         forma[1].innerHTML += ' +'
     } 
-
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
@@ -154,7 +152,6 @@ forma[14].onclick = function(){
         forma[1].innerHTML = forma[2].innerHTML
         forma[1].innerHTML += ' -'
     } 
-
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         calc1 = parseFloat(forma[2].innerHTML)
         verificaIgual = true
@@ -172,7 +169,6 @@ forma[14].onclick = function(){
 //multiplicação////////////////////////
 
 forma[10].onclick = function(){
-
     if(ultimaOperacao != 'multiplicacao' && ultimaOperacao != 'nenhuma' && verificaIgual == false){
         guardarUltimaOperacao = 'multiplicacao'
         resultadoOperacao()
@@ -180,7 +176,6 @@ forma[10].onclick = function(){
         forma[1].innerHTML = forma[2].innerHTML
         forma[1].innerHTML += ' x'
     } 
-
     if(forma[1].innerHTML == undefined || forma[1].innerHTML == ''){
         
         calc1 = parseFloat(forma[2].innerHTML)
@@ -236,7 +231,6 @@ forma[4].onclick = function(){
 
 forma[21].onclick = function(){
     resultadoOperacao()
-    
     fimOperacao()
 }
 
@@ -251,7 +245,6 @@ function fimOperacao(){
 function resultadoOperacao(){
     calc1 = parseFloat(forma[1].innerHTML)
     calc2 = parseFloat(forma[2].innerHTML)
-    
     if(ultimaOperacao == 'adicao'){
         resultado = calc1 + calc2
     } else if(ultimaOperacao == 'subtracao'){
@@ -262,7 +255,6 @@ function resultadoOperacao(){
         resultado = calc1 / calc2
     }
     operacaoGuardada()
-
     fimOperacao()
 }
 
@@ -271,14 +263,10 @@ function operacaoGuardada(){
        forma[1].innerHTML = resultado + ' +' 
     } else if(guardarUltimaOperacao == 'subtracao'){
         forma[1].innerHTML = resultado + ' -'
-
     } else if(guardarUltimaOperacao == 'multiplicacao'){
         forma[1].innerHTML = resultado + ' x'
-
     } else if(guardarUltimaOperacao == 'divisao'){
         forma[1].innerHTML = resultado + ' ÷'
-
     }
-    
 }
 
